@@ -17,7 +17,7 @@ def visualize(path: str):
 	# gets the frame rate
 	f_rate = raw.getframerate()
 
-	# to Plot the x-axis in seconds 
+	# to Plot the x-axis in seconds
 	# you need get the frame rate
 	# and divide by size of your signal
 	# to create a Time Vector
@@ -54,6 +54,6 @@ def visualize(path: str):
 if __name__ == "__main__":
 
 	# gets the command line Value
-	path = sys.argv[1]
+	path = os.getcwd()
 
 	visualize(path)
