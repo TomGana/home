@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import wave, sys
-
+import os
 # shows the sound waves
 def visualize(path: str):
 
