@@ -2,12 +2,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import wave, sys
-import os
+
 # shows the sound waves
 def visualize(path: str):
 
 	# reading the audio file
-	raw = wave.open(test.wav)
+	raw = wave.open(path)
 
 	# reads all the frames
 	# -1 indicates all or max frames
@@ -54,6 +54,6 @@ def visualize(path: str):
 if __name__ == "__main__":
 
 	# gets the command line Value
-	path = os.getcwd()
+	path = sys.argv[1]
 
 	visualize(path)
