@@ -1,38 +1,59 @@
-import pyaudio
-import wave
+# imports
+import matplotlib.pyplot as plt
+import numpy as np
+import wave, sys
 
-CHUNK = 1024
-FORMAT = pyaudio.paInt16
-CHANNELS = 2
-RATE = 44100
-RECORD_SECONDS = 5
-WAVE_OUTPUT_FILENAME = "output.wav"
+# shows the sound waves
+def visualize(path: str):
 
-p = pyaudio.PyAudio()
+	# reading the audio file
+	raw = wave.open(test.wav)
 
-stream = p.open(format=FORMAT,
-                channels=CHANNELS,
-                rate=RATE,
-                input=True,
-                frames_per_buffer=CHUNK)
+	# reads all the frames
+	# -1 indicates all or max frames
+	signal = raw.readframes(-1)
+	signal = np.frombuffer(signal, dtype ="int16")
 
-print("* recording")
+	# gets the frame rate
+	f_rate = raw.getframerate()
 
-frames = []
+	# to Plot the x-axis in seconds 
+	# you need get the frame rate
+	# and divide by size of your signal
+	# to create a Time Vector
+	# spaced linearly with the size
+	# of the audio file
+	time = np.linspace(
+		0, # start
+		len(signal) / f_rate,
+		num = len(signal)
+	)
 
-for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
-    data = stream.read(CHUNK)
-    frames.append(data)
+	# using matlplotlib to plot
+	# creates a new figure
+	plt.figure(1)
 
-print("* done recording")
+	# title of the plot
+	plt.title("Sound Wave")
 
-stream.stop_stream()
-stream.close()
-p.terminate()
+	# label of x-axis
+	plt.xlabel("Time")
 
-wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
-wf.setnchannels(CHANNELS)
-wf.setsampwidth(p.get_sample_size(FORMAT))
-wf.setframerate(RATE)
-wf.writeframes(b''.join(frames))
-wf.close()
+	# actual ploting
+	plt.plot(time, signal)
+
+	# shows the plot
+	# in new window
+	plt.show()
+
+	# you can also save
+	# the plot using
+	# plt.savefig('filename')
+
+
+if __name__ == "__main__":
+
+	# gets the command line Value
+	path = sys.argv[1]
+
+	visualize(path)
