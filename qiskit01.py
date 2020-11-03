@@ -14,8 +14,8 @@ circuit.draw()
 
 from qiskit import IBMQ
 
-IBMQ.save_account("b3bb883ac33e8faef5af38947e19a659b7ec8a265cba863a3c1a667c72d8826b34d19b3ec3d312109b0ed7edbe416bb5fb069b979db02b45e7d04fc0fb919941")
-#IBMQ.load_account()
+#IBMQ.save_account("b3bb883ac33e8faef5af38947e19a659b7ec8a265cba863a3c1a667c72d8826b34d19b3ec3d312109b0ed7edbe416bb5fb069b979db02b45e7d04fc0fb919941")
+IBMQ.load_account()
 provider = IBMQ.get_provider(hub='ibm-q', group='open', project='main')
 for backend in provider.backends():
     try:
