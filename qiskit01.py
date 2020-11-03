@@ -10,7 +10,7 @@ circuit.measure([0,1], [0,1]) #map to bit
 
 circuit.draw()
 
-circuit.draw(output='mpl')
+
 
 from qiskit import IBMQ
 
