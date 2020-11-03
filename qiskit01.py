@@ -1,5 +1,4 @@
 import qiskit as q
-import matplotlib
 
 circuit = q.QuantumCircuit(2,2) #(qbits, bits)
 #(0,0)
